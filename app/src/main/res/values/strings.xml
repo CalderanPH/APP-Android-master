@@ -54,4 +54,8 @@
     <string name="Masculino">Masculino</string>
     <string name="Feminino">Feminino</string>
     <string name="foi_clicado">" foi clicado!"</string>
+    <string name="textNomeDev">Paulo Henrique Molinari Calderan</string>
+    <string name="textEmailDev">paulo_calderan@outlook.com</string>
+    <string name="textSistema">A finalidade do software é ajudar o usuário a controlar sua vida financeira.</string>
+    <string name="direitoAutoral">© 2022</string>
 </resources>
