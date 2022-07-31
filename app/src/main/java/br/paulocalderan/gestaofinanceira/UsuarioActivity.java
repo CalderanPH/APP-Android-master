@@ -1,13 +1,13 @@
 package br.paulocalderan.gestaofinanceira;
 
-import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -16,47 +16,46 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class UsuarioActivity extends AppCompatActivity {
+    public static final String NOME = "NOME";
+    public static final int IDADE = 0;
+    public static final double SALARIO = 0;
+    public static final String GENERO = "GENERO";
+    public static final int NOVO = 1;
 
     private CheckBox cbAluguel, cbMercado;
     private RadioGroup radioGroupSex;
     private Spinner spinner;
-    private EditText editTextNome;
-    private EditText editTextIdade;
-    private EditText editTextGenero;
-    private EditText editTextSalario;
+    private EditText editTextNome, editTextIdade, editTextSalario;
+    private RadioButton radioButtonMas, radioButtonFem;
 
-    Button button;
-
-    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_usuario);
 
         cbAluguel = findViewById(R.id.checkBoxAluguel);
         cbMercado = findViewById(R.id.checkBoxMercado);
         spinner = findViewById(R.id.spinner);
-        radioGroupSex = findViewById(R.id.radioGroup);
+        radioGroupSex = findViewById(R.id.radioGroupSex);
         editTextNome = findViewById(R.id.editTextNomeUser);
         editTextIdade = findViewById(R.id.editTextIdadeUser);
-        editTextGenero = findViewById(R.id.editTextGenUser);
         editTextSalario = findViewById(R.id.editTextSalUser);
-        button = findViewById(R.id.btnListView);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), SecondActivity.class);
-                startActivity(intent);
-            }
-        });
+        radioButtonMas = findViewById(R.id.radioButtonMas);
+        radioButtonFem = findViewById(R.id.radioButtonFem);
 
         popularSpinner();
     }
 
+    public static void cadastrar(AppCompatActivity activity) {
+        Intent intent = new Intent(activity, UsuarioActivity.class);
+        intent.putExtra("", NOVO);
+        activity.startActivityForResult(intent, NOVO);
+    }
+
     private void popularSpinner() {
         ArrayList<String> lista = new ArrayList<>();
+        lista.add("selecione uma data");
         lista.add(getString(R.string.venc1));
         lista.add(getString(R.string.venc2));
         lista.add(getString(R.string.venc3));
@@ -72,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void salvar(View view) {
+        Intent intent = new Intent();
+
+
         //Edit Text Nome
         String nome = editTextNome.getText().toString();
         if (nome == null || nome.trim().isEmpty()) {
@@ -81,26 +83,23 @@ public class MainActivity extends AppCompatActivity {
             editTextNome.requestFocus();
             return;
         }
+        int idade = Integer.parseInt(editTextIdade.getText().toString());
+        int salario = Integer.parseInt(editTextSalario.getText().toString());
 
-        Integer.parseInt(editTextIdade.getText().toString());
-        editTextGenero.getText().toString();
-        Integer.parseInt(editTextSalario.getText().toString());
-
-        Toast.makeText(this,
-                nome.trim(),
-                Toast.LENGTH_SHORT).show();
 
         //RadioButton
         String mensagem3 = "";
         switch (radioGroupSex.getCheckedRadioButtonId()) {
             case R.id.radioButtonMas:
-                int mas = R.id.radioButtonMas;
+                CharSequence mas = radioButtonMas.getText();
+                intent.putExtra(GENERO, mas);
                 mensagem3 = getString(R.string.radioMas) +
                         getString(R.string.foi_selecionado);
                 break;
 
             case R.id.radioButtonFem:
-                int fem = R.id.radioButtonFem;
+                CharSequence fem = radioButtonFem.getText();
+                intent.putExtra(GENERO, fem);
                 mensagem3 = getString(R.string.radioFem) +
                         getString(R.string.foi_selecionado);
                 break;
@@ -110,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Toast.makeText(this, mensagem3, Toast.LENGTH_SHORT).show();
-
 
         //Check Box
         String mensagem = "";
@@ -141,10 +139,26 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(this, mensagem2, Toast.LENGTH_SHORT).show();
 
+        intent.putExtra(NOME, nome);
+        intent.putExtra(String.valueOf(IDADE), idade);
+        intent.putExtra(String.valueOf(SALARIO), salario);
+
+
+        setResult(Activity.RESULT_OK, intent);
+
+        finish();
+
+
+    }
+
+    public void cancelar(View view) {
+        onBackPressed();
     }
 
     public void desmarcarTodos(View view) {
         editTextNome.setText(null);
+        editTextIdade.setText(null);
+        editTextSalario.setText(null);
         cbAluguel.setChecked(false);
         cbMercado.setChecked(false);
         radioGroupSex.clearCheck();
@@ -157,6 +171,12 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(Activity.RESULT_CANCELED);
+        finish();
     }
 
 }

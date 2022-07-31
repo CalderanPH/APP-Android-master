@@ -38,8 +38,8 @@
     <string name="generoUsuario">Informe seu genero</string>
     <string name="userSalario">Informe seu Salario</string>
     <string name="btnListView">Ver Lista de Usuarios</string>
-    
-    
+
+
     <string name="Paulo">Paulo</string>
     <string name="Pedro">Pedro</string>
     <string name="Ronaldo">Ronaldo</string>
@@ -58,4 +58,10 @@
     <string name="textEmailDev">paulo_calderan@outlook.com</string>
     <string name="textSistema">A finalidade do software é ajudar o usuário a controlar sua vida financeira.</string>
     <string name="direitoAutoral">© 2022</string>
+    <string name="activity_listagem">ListagemActivityActivity</string>
+    <string name="buttonNovo">Novo</string>
+    <string name="buttonSobre">Sobre</string>
+    <string name="buttonInfo">Sobre</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="buttonCancelar">Cancelar Cadastro</string>
 </resources>
