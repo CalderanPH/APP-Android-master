@@ -1,5 +1,6 @@
 package br.paulocalderan.gestaofinanceira;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -7,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -25,8 +25,10 @@ public class MainActivity extends AppCompatActivity {
     private EditText editTextIdade;
     private EditText editTextGenero;
     private EditText editTextSalario;
-    private ListView listViewUsuario;
 
+    Button button;
+
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +42,17 @@ public class MainActivity extends AppCompatActivity {
         editTextIdade = findViewById(R.id.editTextIdadeUser);
         editTextGenero = findViewById(R.id.editTextGenUser);
         editTextSalario = findViewById(R.id.editTextSalUser);
-        listViewUsuario = findViewById(R.id.listViewUsuario);
+        button = findViewById(R.id.btnListView);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), SecondActivity.class);
+                startActivity(intent);
+            }
+        });
 
         popularSpinner();
-
-
     }
 
     private void popularSpinner() {
@@ -63,18 +71,7 @@ public class MainActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
     }
 
-
     public void salvar(View view) {
-        Button salvar = (Button) findViewById(R.id.buttonSalvar);
-        salvar.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent outraActivity =
-                        new Intent(MainActivity.this, SecondActivity.class);
-                startActivity(outraActivity);
-            }
-        });
-
         //Edit Text Nome
         String nome = editTextNome.getText().toString();
         if (nome == null || nome.trim().isEmpty()) {
@@ -85,47 +82,9 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        //Edit Text Idade
-        int idade = Integer.parseInt(editTextIdade.getText().toString());
-        if (nome == null || nome.trim().isEmpty()) {
-            Toast.makeText(this,
-                    R.string.error_nome,
-                    Toast.LENGTH_SHORT).show();
-            editTextNome.requestFocus();
-            return;
-        }
-
-        //Edit Text genero
-        String genero = editTextGenero.getText().toString();
-        if (nome == null || nome.trim().isEmpty()) {
-            Toast.makeText(this,
-                    R.string.error_nome,
-                    Toast.LENGTH_SHORT).show();
-            editTextNome.requestFocus();
-            return;
-        }
-
-        //Edit Text salario
-        double salario = Integer.parseInt(editTextSalario.getText().toString());
-        if (nome == null || nome.trim().isEmpty()) {
-            Toast.makeText(this,
-                    R.string.error_nome,
-                    Toast.LENGTH_SHORT).show();
-            editTextNome.requestFocus();
-            return;
-        }
-        ArrayList<Usuario> usuarios = new ArrayList<>();
-        usuarios.add(new Usuario(nome, genero, idade, salario));
-
-        ArrayAdapter<Usuario> adapter =
-                new ArrayAdapter<>(this,
-                        android.R.layout.simple_list_item_1,
-                        usuarios);
-
-        listViewUsuario.setAdapter(adapter);
-
-
-
+        Integer.parseInt(editTextIdade.getText().toString());
+        editTextGenero.getText().toString();
+        Integer.parseInt(editTextSalario.getText().toString());
 
         Toast.makeText(this,
                 nome.trim(),

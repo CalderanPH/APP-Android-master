@@ -37,4 +37,21 @@
     <string name="idadeUsuario">idadeUsuario</string>
     <string name="generoUsuario">Informe seu genero</string>
     <string name="userSalario">Informe seu Salario</string>
+    <string name="btnListView">Ver Lista de Usuarios</string>
+    
+    
+    <string name="Paulo">Paulo</string>
+    <string name="Pedro">Pedro</string>
+    <string name="Ronaldo">Ronaldo</string>
+    <string name="Fernando">Fernando</string>
+    <string name="Matheus">Matheus</string>
+    <string name="Maria">Maria</string>
+    <string name="Rosa">Rosa</string>
+    <string name="Carla">Carla</string>
+    <string name="Marilza">Marilza</string>
+    <string name="Clarisse">Clarisse</string>
+
+    <string name="Masculino">Masculino</string>
+    <string name="Feminino">Feminino</string>
+    <string name="foi_clicado">" foi clicado!"</string>
 </resources>

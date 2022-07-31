@@ -47,11 +47,12 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" +
-                "nome='" + nome + '\'' +
-                ", genero='" + genero + '\'' +
-                ", idade=" + idade +
-                ", Salario=" + Salario +
-                '}';
+        return getNome()
+                + " / "
+                + getGenero()
+                + " / idade: "
+                + getIdade()
+                + " / salario: "
+                + getSalario();
     }
 }
