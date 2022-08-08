@@ -9,30 +9,8 @@
         android:id="@+id/listViewUsuario"
         android:layout_width="411dp"
         android:layout_height="544dp"
-        android:layout_marginTop="104dp"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSobre"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="232dp" />
 
-    <Button
-        android:id="@+id/buttonNovo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="32dp"
-        android:onClick="adicionarUser"
-        android:text="@string/buttonNovo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/buttonSobre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="32dp"
-        android:onClick="abrirSobre"
-        android:text="@string/buttonSobre"
-        app:layout_constraintStart_toEndOf="@+id/buttonNovo"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

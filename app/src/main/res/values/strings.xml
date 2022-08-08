@@ -64,4 +64,8 @@
     <string name="buttonInfo">Sobre</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="buttonCancelar">Cancelar Cadastro</string>
+    <string name="itemSalvar">Salvar</string>
+    <string name="item_Salvar">Salvar</string>
+    <string name="itemSobre">Sobre</string>
+    <string name="itemAdicionar">Adicionar</string>
 </resources>

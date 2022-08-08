@@ -11,6 +11,9 @@
         <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/layout/activity_usuario.xml" value="0.25" />
         <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/layout/content_second.xml" value="0.25" />
         <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/layout/listagem_activity.xml" value="0.25" />
+        <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/menu/a.xml" value="0.264" />
+        <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/menu/menu_usuario.xml" value="0.25" />
+        <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/menu/usuario_opcoes.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/paulo/AndroidStudioProjects/GestaoFinanceira/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/paulo/Downloads/APP-Android-master/APP-Android-master/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/paulo/Downloads/APP-Android-master/APP-Android-master/app/src/main/res/layout/activity_second.xml" value="0.25" />
@@ -27,7 +30,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.2" />
+        <option name="scale" value="0.1" />
       </ProjectState>
     </option>
   </component>

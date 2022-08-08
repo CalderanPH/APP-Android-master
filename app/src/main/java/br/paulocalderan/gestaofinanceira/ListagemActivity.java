@@ -1,13 +1,17 @@
 package br.paulocalderan.gestaofinanceira;
 
 import android.app.Activity;
+import android.app.LauncherActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -17,6 +21,7 @@ public class ListagemActivity extends AppCompatActivity {
     private ListView listViewUsuarios;
     private ArrayAdapter<Usuario> listAdapter;
     private ArrayList<Usuario> listUsuarios;
+    public static final int NOVO = 1;
 
     private int posicaoSelecionada = -1;
 
@@ -41,6 +46,31 @@ public class ListagemActivity extends AppCompatActivity {
         popularLista();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_usuario, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menuSalvar:
+                Intent i = new Intent(this, UsuarioActivity.class);
+                startActivityForResult(i, R.layout.activity_usuario);
+                break;
+            case R.id.menuSobre:
+                Intent intent = new Intent(this, AutoriaActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     private void popularLista() {
         listUsuarios = new ArrayList<>();
         listAdapter = new ArrayAdapter<>(this,
@@ -48,15 +78,6 @@ public class ListagemActivity extends AppCompatActivity {
                 listUsuarios);
 
         listViewUsuarios.setAdapter(listAdapter);
-    }
-
-    public void adicionarUser(View view) {
-        UsuarioActivity.cadastrar(this);
-    }
-
-
-    public void abrirSobre(View view) {
-        AutoriaActivity.autoria(this);
     }
 
     @Override
