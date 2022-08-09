@@ -3,7 +3,8 @@ package br.paulocalderan.gestaofinanceira;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -12,6 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -19,9 +21,18 @@ import java.util.ArrayList;
 public class UsuarioActivity extends AppCompatActivity {
     public static final String NOME = "NOME";
     public static final int IDADE = 0;
-    public static final double SALARIO = 0;
     public static final String GENERO = "GENERO";
+    public static final double SALARIO = 0;
+
+    public static final String MODO = "MODO";
+    public static final int ALTERAR = 2;
     public static final int NOVO = 1;
+
+    private int modo;
+    private String nomeOriginal;
+    private String idadeOriginal;
+    private String salarioOriginal;
+
 
     private CheckBox cbAluguel, cbMercado;
     private RadioGroup radioGroupSex;
@@ -29,10 +40,38 @@ public class UsuarioActivity extends AppCompatActivity {
     private EditText editTextNome, editTextIdade, editTextSalario;
     private RadioButton radioButtonMas, radioButtonFem;
 
+    public static void novoUsuario(AppCompatActivity activity) {
+        Intent intent = new Intent(activity, UsuarioActivity.class);
+
+        intent.putExtra(MODO, NOVO);
+
+        activity.startActivityForResult(intent, NOVO);
+    }
+
+    public static void alterarUsuario(AppCompatActivity activity,
+                                      Usuario usuario) {
+
+        Intent intent = new Intent(activity, UsuarioActivity.class);
+
+        intent.putExtra(MODO, ALTERAR);
+        intent.putExtra(NOME, usuario.getNome());
+        intent.putExtra(String.valueOf(IDADE), usuario.getIdade());
+        intent.putExtra(String.valueOf(SALARIO), usuario.getSalario());
+        intent.putExtra(GENERO, usuario.getSalario());
+
+        activity.startActivityForResult(intent, ALTERAR);
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         cbAluguel = findViewById(R.id.checkBoxAluguel);
         cbMercado = findViewById(R.id.checkBoxMercado);
@@ -44,35 +83,33 @@ public class UsuarioActivity extends AppCompatActivity {
         radioButtonMas = findViewById(R.id.radioButtonMas);
         radioButtonFem = findViewById(R.id.radioButtonFem);
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        if (bundle != null) {
+
+            modo = bundle.getInt(MODO, NOVO);
+
+            if (modo == NOVO) {
+                setTitle(getString(R.string.novo_usuario));
+            } else {
+                nomeOriginal = bundle.getString(NOME);
+                idadeOriginal = String.valueOf(bundle.getInt(String.valueOf(IDADE)));
+                salarioOriginal = String.valueOf(bundle.getDouble(String.valueOf(SALARIO)));
+
+                editTextNome.setText(nomeOriginal);
+                editTextIdade.setText(idadeOriginal);
+                editTextSalario.setText(salarioOriginal);
+
+                setTitle(getString(R.string.alterar_usuario));
+            }
+        }
+
         popularSpinner();
     }
 
-    public static void cadastrar(AppCompatActivity activity) {
-        Intent intent = new Intent(activity, UsuarioActivity.class);
-        intent.putExtra("", NOVO);
-        activity.startActivityForResult(intent, NOVO);
-    }
-
-    private void popularSpinner() {
-        ArrayList<String> lista = new ArrayList<>();
-        lista.add("selecione uma data");
-        lista.add(getString(R.string.venc1));
-        lista.add(getString(R.string.venc2));
-        lista.add(getString(R.string.venc3));
-        lista.add(getString(R.string.venc4));
-        lista.add(getString(R.string.venc5));
-        lista.add(getString(R.string.venc6));
-
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(this,
-                        android.R.layout.simple_list_item_1, lista);
-
-        spinner.setAdapter(adapter);
-    }
-
-    public void salvar(View view) {
+    private void salvar() {
         Intent intent = new Intent();
-
 
         //Edit Text Nome
         String nome = editTextNome.getText().toString();
@@ -83,9 +120,14 @@ public class UsuarioActivity extends AppCompatActivity {
             editTextNome.requestFocus();
             return;
         }
+
         int idade = Integer.parseInt(editTextIdade.getText().toString());
         int salario = Integer.parseInt(editTextSalario.getText().toString());
 
+        if (modo == ALTERAR && nome.equals(nomeOriginal)) {
+            cancelar();
+            return;
+        }
 
         //RadioButton
         String mensagem3 = "";
@@ -107,7 +149,6 @@ public class UsuarioActivity extends AppCompatActivity {
             default:
                 mensagem3 = getString(R.string.nada_selecionado);
         }
-
         Toast.makeText(this, mensagem3, Toast.LENGTH_SHORT).show();
 
         //Check Box
@@ -124,7 +165,6 @@ public class UsuarioActivity extends AppCompatActivity {
         } else {
             mensagem = getString(R.string.selecionado) + "\n" + mensagem;
         }
-
         Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
 
         //spinner
@@ -136,7 +176,6 @@ public class UsuarioActivity extends AppCompatActivity {
         } else {
             mensagem2 = getString(R.string.nenhuma_op);
         }
-
         Toast.makeText(this, mensagem2, Toast.LENGTH_SHORT).show();
 
         intent.putExtra(NOME, nome);
@@ -147,15 +186,14 @@ public class UsuarioActivity extends AppCompatActivity {
         setResult(Activity.RESULT_OK, intent);
 
         finish();
-
-
     }
 
-    public void cancelar(View view) {
-        onBackPressed();
+    public void cancelar() {
+        setResult(Activity.RESULT_CANCELED);
+        finish();
     }
 
-    public void desmarcarTodos(View view) {
+    public void desmarcarTodos() {
         editTextNome.setText(null);
         editTextIdade.setText(null);
         editTextSalario.setText(null);
@@ -169,14 +207,56 @@ public class UsuarioActivity extends AppCompatActivity {
         mensagem = getString(R.string.mensagem_desmarcar);
 
         Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
+    }
 
+    private void popularSpinner() {
+        ArrayList<String> lista = new ArrayList<>();
+        lista.add("selecione uma data");
+        lista.add(getString(R.string.venc1));
+        lista.add(getString(R.string.venc2));
+        lista.add(getString(R.string.venc3));
+        lista.add(getString(R.string.venc4));
+        lista.add(getString(R.string.venc5));
+        lista.add(getString(R.string.venc6));
 
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(this,
+                        android.R.layout.simple_list_item_1, lista);
+
+        spinner.setAdapter(adapter);
     }
 
     @Override
     public void onBackPressed() {
-        setResult(Activity.RESULT_CANCELED);
-        finish();
+        cancelar();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_cadastro, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.menuItemSalvar:
+                salvar();
+                return true;
+
+            case R.id.menuItemLimpar:
+                desmarcarTodos();
+                return true;
+
+            case android.R.id.home:
+
+            case R.id.menuItemCancelar:
+                cancelar();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

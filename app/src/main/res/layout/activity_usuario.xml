@@ -45,7 +45,7 @@
                 android:id="@+id/idadeUsuario"
                 android:layout_width="297dp"
                 android:layout_height="20dp"
-                android:text="@string/idadeUsuario" />
+                android:text="@string/stringIdade" />
 
             <EditText
                 android:id="@+id/editTextIdadeUser"
@@ -123,27 +123,6 @@
                 android:layout_width="297dp"
                 android:layout_height="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
-
-            <Button
-                android:id="@+id/buttonLimpar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="desmarcarTodos"
-                android:text="@string/buttonLimpar" />
-
-            <Button
-                android:id="@+id/buttonSalvar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="salvar"
-                android:text="@string/buttonSalvar" />
-
-            <Button
-                android:id="@+id/buttonCancelar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="cancelar"
-                android:text="@string/buttonCancelar" />
 
         </LinearLayout>
     </ScrollView>

@@ -16,6 +16,7 @@
         <activity android:name=".AutoriaActivity" ></activity>
         <activity android:name=".UsuarioActivity" />
         <activity android:name=".ListagemActivity"
+            android:parentActivityName=".ListagemActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

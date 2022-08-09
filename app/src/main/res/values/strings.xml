@@ -68,4 +68,15 @@
     <string name="item_Salvar">Salvar</string>
     <string name="itemSobre">Sobre</string>
     <string name="itemAdicionar">Adicionar</string>
+    <string name="menuEditar">Editar</string>
+    <string name="menuExcluir">Excluir</string>
+    <string name="menu_Excluir">Excluir</string>
+    <string name="stringIdade">Infome Idade:</string>
+    <string name="stringSalario">Salario:</string>
+    <string name="buttonAlterar">alterar</string>
+    <string name="buttonalterar">Alterar</string>
+    <string name="menuLimpar">limpar</string>
+    <string name="menuAlterar">Alterar</string>
+    <string name="novo_usuario">Novo Usuario</string>
+    <string name="alterar_usuario">Alterar Usuario</string>
 </resources>

@@ -12,6 +12,9 @@ public class Usuario {
         this.idade = idade;
         Salario = salario;
     }
+    public Usuario(){
+
+    }
 
     public String getNome() {
         return nome;

@@ -3,12 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menuItemNovo"
+        android:id="@+id/menuItemAlterar"
         android:icon="@android:drawable/ic_menu_save"
-        android:title="@string/itemAdicionar"
-        app:showAsAction="ifRoom" />
+        android:title="@string/menuAlterar" />
     <item
-        android:id="@+id/menuSobre"
-        android:title="@string/itemSobre"
-        app:showAsAction="ifRoom" />
+        android:id="@+id/menuItemExcluir"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="@string/menu_Excluir" />
 </menu>
