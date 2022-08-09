@@ -102,13 +102,13 @@
 
             <CheckBox
                 android:id="@+id/checkBoxMercado"
-                android:layout_width="100dp"
+                android:layout_width="112dp"
                 android:layout_height="wrap_content"
                 android:text="@string/checkMercado" />
 
             <CheckBox
                 android:id="@+id/checkBoxAluguel"
-                android:layout_width="100dp"
+                android:layout_width="112dp"
                 android:layout_height="wrap_content"
                 android:text="@string/checkAluguel" />
 
