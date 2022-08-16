@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.view.ActionMode;
 
 import java.util.ArrayList;
@@ -30,10 +31,6 @@ public class ListagemActivity extends AppCompatActivity {
     private ActionMode actionMode;
     private int posicaoSelecionada = -1;
     private View viewSelecionada;
-
-    public static final String NIGHT_MODE = "NIGHT_MODE";
-    private boolean isNightModeEnabled = false;
-
 
     private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
 
@@ -130,33 +127,27 @@ public class ListagemActivity extends AppCompatActivity {
 
         sharedPref = new SharedPref(this);
         if (sharedPref.loadNightState() == true) {
-            setTheme(R.style.Theme_darkTheme);
+            setTheme(R.style.Theme_GestaoFinanceira);
         } else setTheme(R.style.Theme_GestaoFinanceira);
 
         aSwitch = findViewById(R.id.switch1);
 
         if (sharedPref.loadNightState() == true) {
             aSwitch.setChecked(true);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         }
         aSwitch.setOnCheckedChangeListener(((compoundButton, isChecked) -> {
-            if (isChecked) {
+            if (aSwitch.isChecked()) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 sharedPref.setNightModeState(true);
             } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 sharedPref.setNightModeState(false);
-                restartApp();
             }
         }));
 
-
         popularLista();
     }
-
-    private void restartApp() {
-        Intent i = new Intent(getApplicationContext(), ListagemActivity.class);
-        startActivity(i);
-        finish();
-    }
-
 
     private void popularLista() {
         listUsuarios = new ArrayList<>();
