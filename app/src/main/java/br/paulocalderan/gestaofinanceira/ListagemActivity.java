@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
@@ -19,6 +20,8 @@ import androidx.appcompat.view.ActionMode;
 import java.util.ArrayList;
 
 public class ListagemActivity extends AppCompatActivity {
+    private Switch aSwitch;
+    SharedPref sharedPref;
 
     private ListView listViewUsuarios;
     private ArrayAdapter<Usuario> listAdapter;
@@ -27,6 +30,10 @@ public class ListagemActivity extends AppCompatActivity {
     private ActionMode actionMode;
     private int posicaoSelecionada = -1;
     private View viewSelecionada;
+
+    public static final String NIGHT_MODE = "NIGHT_MODE";
+    private boolean isNightModeEnabled = false;
+
 
     private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
 
@@ -80,7 +87,6 @@ public class ListagemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listagem);
 
-
         listViewUsuarios = findViewById(R.id.listViewUsuario);
 
         listViewUsuarios.setOnItemClickListener(
@@ -122,7 +128,33 @@ public class ListagemActivity extends AppCompatActivity {
                     }
                 });
 
+        sharedPref = new SharedPref(this);
+        if (sharedPref.loadNightState() == true) {
+            setTheme(R.style.Theme_darkTheme);
+        } else setTheme(R.style.Theme_GestaoFinanceira);
+
+        aSwitch = findViewById(R.id.switch1);
+
+        if (sharedPref.loadNightState() == true) {
+            aSwitch.setChecked(true);
+        }
+        aSwitch.setOnCheckedChangeListener(((compoundButton, isChecked) -> {
+            if (isChecked) {
+                sharedPref.setNightModeState(true);
+            } else {
+                sharedPref.setNightModeState(false);
+                restartApp();
+            }
+        }));
+
+
         popularLista();
+    }
+
+    private void restartApp() {
+        Intent i = new Intent(getApplicationContext(), ListagemActivity.class);
+        startActivity(i);
+        finish();
     }
 
 
