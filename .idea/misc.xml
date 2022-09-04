@@ -1,43 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DesignSurface">
-    <option name="filePathToZoomLevelMap">
-      <map>
-        <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/layout/activity_autoria.xml" value="0.25" />
-        <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/layout/activity_listagem.xml" value="0.264" />
-        <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/layout/activity_second.xml" value="0.25" />
-        <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/layout/activity_second2.xml" value="0.25" />
-        <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/layout/activity_usuario.xml" value="0.25" />
-        <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/layout/content_second.xml" value="0.25" />
-        <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/layout/listagem_activity.xml" value="0.25" />
-        <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/menu/a.xml" value="0.264" />
-        <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/menu/menu_autoria.xml" value="0.25" />
-        <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/menu/menu_cadastro.xml" value="0.25" />
-        <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/menu/menu_item_selecionado.xml" value="0.2" />
-        <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/menu/menu_usuario.xml" value="0.25" />
-        <entry key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/menu/usuario_opcoes.xml" value="0.24895833333333334" />
-        <entry key="..\:/Users/paulo/AndroidStudioProjects/Android/app/src/main/res/layout/activity_autoria.xml" value="0.25" />
-        <entry key="..\:/Users/paulo/AndroidStudioProjects/Android/app/src/main/res/layout/activity_listagem.xml" value="0.2" />
-        <entry key="..\:/Users/paulo/AndroidStudioProjects/Android/app/src/main/res/layout/activity_usuario.xml" value="0.4" />
-        <entry key="..\:/Users/paulo/AndroidStudioProjects/GestaoFinanceira/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/paulo/Downloads/APP-Android-master/APP-Android-master/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/paulo/Downloads/APP-Android-master/APP-Android-master/app/src/main/res/layout/activity_second.xml" value="0.25" />
-        <entry key="..\:/Users/paulo/Downloads/APP-Android-master/APP-Android-master/app/src/main/res/layout/activity_second2.xml" value="0.264" />
-      </map>
-    </option>
-  </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
-  </component>
-  <component name="ProjectType">
-    <option name="id" value="jpab" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.1" />
-      </ProjectState>
-    </option>
-  </component>
+    <component name="DesignSurface">
+        <option name="filePathToZoomLevelMap">
+            <map>
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/layout/activity_autoria.xml"
+                    value="0.25" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/layout/activity_listagem.xml"
+                    value="0.264" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/layout/activity_main.xml"
+                    value="0.25" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/layout/activity_second.xml"
+                    value="0.25" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/layout/activity_second2.xml"
+                    value="0.25" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/layout/activity_usuario.xml"
+                    value="0.25" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/layout/content_second.xml"
+                    value="0.25" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/layout/listagem_activity.xml"
+                    value="0.25" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/menu/a.xml"
+                    value="0.264" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/menu/menu_autoria.xml"
+                    value="0.25" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/menu/menu_cadastro.xml"
+                    value="0.25" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/menu/menu_item_selecionado.xml"
+                    value="0.2" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/menu/menu_usuario.xml"
+                    value="0.25" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/APP-Android-master/app/src/main/res/menu/usuario_opcoes.xml"
+                    value="0.24895833333333334" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/Android/app/src/main/res/layout/activity_autoria.xml"
+                    value="0.25" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/Android/app/src/main/res/layout/activity_listagem.xml"
+                    value="0.2" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/Android/app/src/main/res/layout/activity_usuario.xml"
+                    value="0.4" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/Android/app/src/main/res/menu/menu_cadastro.xml"
+                    value="0.25" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/Android/app/src/main/res/menu/menu_item_selecionado.xml"
+                    value="0.25" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/Android/app/src/main/res/menu/menu_usuario.xml"
+                    value="0.25" />
+                <entry
+                    key="..\:/Users/paulo/AndroidStudioProjects/GestaoFinanceira/app/src/main/res/layout/activity_main.xml"
+                    value="0.264" />
+                <entry
+                    key="..\:/Users/paulo/Downloads/APP-Android-master/APP-Android-master/app/src/main/res/layout/activity_main.xml"
+                    value="0.25" />
+                <entry
+                    key="..\:/Users/paulo/Downloads/APP-Android-master/APP-Android-master/app/src/main/res/layout/activity_second.xml"
+                    value="0.25" />
+                <entry
+                    key="..\:/Users/paulo/Downloads/APP-Android-master/APP-Android-master/app/src/main/res/layout/activity_second2.xml"
+                    value="0.264" />
+            </map>
+        </option>
+    </component>
+    <component name="ProjectRootManager" default="true" languageLevel="JDK_11" project-jdk-name="11"
+        project-jdk-type="JavaSDK" version="2">
+        <output url="file://$PROJECT_DIR$/build/classes" />
+    </component>
+    <component name="ProjectType">
+        <option name="id" value="jpab" />
+    </component>
+    <component name="VisualizationToolProject">
+        <option name="state">
+            <ProjectState>
+                <option name="scale" value="0.1" />
+            </ProjectState>
+        </option>
+    </component>
 </project>

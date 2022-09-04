@@ -1,4 +1,4 @@
-package br.paulocalderan.gestaofinanceira;
+package br.paulocalderan.gestaofinanceira.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -20,4 +20,5 @@ public class SharedPref {
         Boolean state = sharedPreferences.getBoolean("NightMode", false);
         return state;
     }
+
 }

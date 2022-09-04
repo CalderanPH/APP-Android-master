@@ -1,6 +1,16 @@
-package br.paulocalderan.gestaofinanceira;
+package br.paulocalderan.gestaofinanceira.domain;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Usuario {
+    public static final int MASCULINO = 1;
+    public static final int FEMININO = 2;
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
     private String nome;
     private String genero;
     private int idade;
@@ -12,8 +22,17 @@ public class Usuario {
         this.idade = idade;
         Salario = salario;
     }
-    public Usuario(){
 
+    public Usuario() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -58,4 +77,5 @@ public class Usuario {
                 + " / salario: "
                 + getSalario();
     }
+
 }

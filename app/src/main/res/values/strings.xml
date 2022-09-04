@@ -69,5 +69,11 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_second">SecondActivity</string>
     <string name="switchMod">Night Mod</string>
+    <string name="warning">want to delete?</string>
+    <string name="ok">successfully deleted</string>
+    <string name="confirmation">confirm</string>
+    <string name="yes">yes</string>
+    <string name="not">not</string>
+    <string name="want_to_really_delete">really want to erase?</string>
 
 </resources>

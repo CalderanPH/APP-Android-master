@@ -1,5 +1,6 @@
 package br.paulocalderan.gestaofinanceira;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,8 +19,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
+import br.paulocalderan.gestaofinanceira.domain.Usuario;
+import br.paulocalderan.gestaofinanceira.persistencia.UsuarioDatabase;
+
 public class UsuarioActivity extends AppCompatActivity {
     public static final String NOME = "NOME";
+    public static final String ID = "ID";
     public static final int IDADE = 0;
     public static final String GENERO = "GENERO";
     public static final double SALARIO = 0;
@@ -32,6 +37,8 @@ public class UsuarioActivity extends AppCompatActivity {
     private String nomeOriginal;
     private String idadeOriginal;
     private String salarioOriginal;
+    private int generoOriginal;
+    private Usuario usuario;
 
 
     private CheckBox cbAluguel, cbMercado;
@@ -40,29 +47,26 @@ public class UsuarioActivity extends AppCompatActivity {
     private EditText editTextNome, editTextIdade, editTextSalario;
     private RadioButton radioButtonMas, radioButtonFem;
 
-    public static void novoUsuario(AppCompatActivity activity) {
+    public static void novoUsuario(AppCompatActivity activity, int requestCode) {
         Intent intent = new Intent(activity, UsuarioActivity.class);
 
         intent.putExtra(MODO, NOVO);
 
-        activity.startActivityForResult(intent, NOVO);
+        activity.startActivityForResult(intent, requestCode);
     }
 
-    public static void alterarUsuario(AppCompatActivity activity,
-                                      Usuario usuario) {
+    public static void alterarUsuario(AppCompatActivity activity, int requestCode, Usuario usuario) {
 
         Intent intent = new Intent(activity, UsuarioActivity.class);
 
         intent.putExtra(MODO, ALTERAR);
-        intent.putExtra(NOME, usuario.getNome());
-        intent.putExtra(String.valueOf(IDADE), usuario.getIdade());
-        intent.putExtra(String.valueOf(SALARIO), usuario.getSalario());
-        intent.putExtra(GENERO, usuario.getSalario());
+        intent.putExtra(ID, usuario.getId());
 
-        activity.startActivityForResult(intent, ALTERAR);
+        activity.startActivityForResult(intent, requestCode);
 
     }
 
+    @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,23 +90,41 @@ public class UsuarioActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        if (bundle != null) {
+        modo = bundle.getInt(MODO, NOVO);
+        if (modo == ALTERAR) {
+            setTitle(getString(R.string.alterar_usuario));
 
-            modo = bundle.getInt(MODO, NOVO);
+            int id = bundle.getInt(ID);
 
-            if (modo == NOVO) {
-                setTitle(getString(R.string.novo_usuario));
-            } else {
-                nomeOriginal = bundle.getString(NOME);
-                idadeOriginal = String.valueOf(bundle.getInt(String.valueOf(IDADE)));
-                salarioOriginal = String.valueOf(bundle.getDouble(String.valueOf(SALARIO)));
+            UsuarioDatabase database = UsuarioDatabase.getDatabase(this);
+            usuario = database.usuarioDao().queryForId((long) id);
 
-                editTextNome.setText(nomeOriginal);
-                editTextIdade.setText(idadeOriginal);
-                editTextSalario.setText(salarioOriginal);
+            nomeOriginal = bundle.getString(NOME);
+            idadeOriginal = String.valueOf(bundle.getInt(String.valueOf(IDADE)));
+            salarioOriginal = String.valueOf(bundle.getDouble(String.valueOf(SALARIO)));
+            generoOriginal = bundle.getInt(GENERO);
 
-                setTitle(getString(R.string.alterar_usuario));
+            editTextNome.setText(nomeOriginal);
+            editTextIdade.setText(idadeOriginal);
+            editTextSalario.setText(salarioOriginal);
+
+            RadioButton button;
+            switch (generoOriginal) {
+                case Usuario.MASCULINO:
+                    button = findViewById(R.id.radioButtonMas);
+                    button.setChecked(true);
+                    break;
+
+                case Usuario.FEMININO:
+                    button = findViewById(R.id.radioButtonFem);
+                    button.setChecked(true);
+                    break;
             }
+
+        } else {
+            setTitle(getString(R.string.novo_usuario));
+
+            usuario = new Usuario();
         }
 
         popularSpinner();
@@ -135,6 +157,7 @@ public class UsuarioActivity extends AppCompatActivity {
             case R.id.radioButtonMas:
                 CharSequence mas = radioButtonMas.getText();
                 intent.putExtra(GENERO, mas);
+                usuario.setGenero(String.valueOf(mas));
                 mensagem3 = getString(R.string.radioMas) +
                         getString(R.string.foi_selecionado);
                 break;
@@ -142,6 +165,7 @@ public class UsuarioActivity extends AppCompatActivity {
             case R.id.radioButtonFem:
                 CharSequence fem = radioButtonFem.getText();
                 intent.putExtra(GENERO, fem);
+                usuario.setGenero(String.valueOf(fem));
                 mensagem3 = getString(R.string.radioFem) +
                         getString(R.string.foi_selecionado);
                 break;
@@ -182,14 +206,19 @@ public class UsuarioActivity extends AppCompatActivity {
         intent.putExtra(String.valueOf(IDADE), idade);
         intent.putExtra(String.valueOf(SALARIO), salario);
 
+        usuario.setNome(nome);
+        usuario.setIdade(idade);
+        usuario.setSalario(salario);
+
+        UsuarioDatabase database = UsuarioDatabase.getDatabase(this);
+
+        if (modo == NOVO) {
+            database.usuarioDao().insert(usuario);
+        } else {
+            database.usuarioDao().update(usuario);
+        }
 
         setResult(Activity.RESULT_OK, intent);
-
-        finish();
-    }
-
-    public void cancelar() {
-        setResult(Activity.RESULT_CANCELED);
         finish();
     }
 
@@ -226,6 +255,11 @@ public class UsuarioActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
     }
 
+    public void cancelar() {
+        setResult(Activity.RESULT_CANCELED);
+        finish();
+    }
+
     @Override
     public void onBackPressed() {
         cancelar();
@@ -259,4 +293,5 @@ public class UsuarioActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }

@@ -68,4 +68,11 @@
     <string name="menuAlterar">Alterar</string>
     <string name="novo_usuario">Novo Usuário</string>
     <string name="alterar_usuario">Alterar usuário</string>
+    <string name="ok">deletado com sucesso</string>
+    <string name="warning">Deseja deletar</string>
+    <string name="confirmation">confirme</string>
+    <string name="yes">sim</string>
+    <string name="not">nao</string>
+    <string name="want_to_really_delete">deseja realmente apagar?</string>
+    <string name="switchMod">Night Mod</string>
 </resources>
